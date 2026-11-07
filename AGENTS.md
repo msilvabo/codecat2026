@@ -1,6 +1,6 @@
 # 🐱 Codicats - Lineamientos Generales del Proyecto (Airbnb Replica)
 
-Bienvenido a las directrices oficiales para agentes de IA y desarrolladores del proyecto **Codicats Airbnb Replica**. Este archivo establece el contexto general, arquitectura técnica, directrices de diseño y reglas de desarrollo obligatorias.
+Bienvenido a las directrices oficiales para agentes de IA y desarrolladores del proyecto **Codicats Airbnb Replica**. Este archivo establece el contexto general, arquitectura técnica, directrices de diseño, reglas de desarrollo y flujo de documentación obligatorios.
 
 ---
 
@@ -32,11 +32,11 @@ Bienvenido a las directrices oficiales para agentes de IA y desarrolladores del 
 
 ---
 
-## 🎨 3. Referencias Visuales y Diseño (Google stitch)
+## 🎨 3. Referencias Visuales y Diseño (Gliss)
 
-- **Carpeta de Referencias:** Los diseños y pantallas se proporcionarán en una carpeta `reference/` (donde se ubican los diseños rescatados de Gliss para las distintas vistas del sitio, junto a recursos de diseño como maquetas y capturas).
+- **Carpeta de Referencias:** Los diseños y pantallas se encuentran en la carpeta `reference/pages/` (diseños rescatados de Gliss para las distintas vistas del sitio, junto a recursos de diseño como maquetas y capturas).
 - **Directriz de Uso:**
-  - Antes de maquetar cualquier vista o componente, el agente debe revisar la carpeta `reference/` para replicar con precisión la distribución, estilos, modos visuales (como dark mode) y jerarquía de la información.
+  - Antes de maquetar cualquier vista o componente, el agente debe revisar la carpeta de referencias para replicar con precisión la distribución, estilos, modos visuales (como dark mode) y jerarquía de la información.
 
 ---
 
@@ -55,6 +55,43 @@ Basado estrictamente en las directrices de `.agents/guidelines.md`:
 ### ⚠️ Reglas Críticas para el Agente
 - **Cero instalaciones no autorizadas:** **NO** realizar configuraciones ni instalaciones de librerías sin consultar primero al usuario.
 - **Código limpio y tipado:** Mantener TypeScript estricto, interfaces claras para los modelos de datos (propiedad, reserva, usuario, ciudad) y seguir las mejores prácticas de Next.js App Router (separación adecuada de Server Components y Client Components).
+
+---
+
+## 📑 5. Manejo de Documentación y Ciclo de Trabajo (Planeación e Implementación)
+
+Para garantizar trazabilidad, orden y calidad en cada funcionalidad o tarea que se desarrolle, se debe seguir estrictamente este flujo de documentación:
+
+### 📝 Fase 1: Modo Planeación (Especificación)
+- Al entrar en modo de planeación para cualquier tarea o funcionalidad, se debe redactar y guardar un archivo de especificación/plan.
+- **Carpeta destino:** `reference/spec/` (o ruta relativa `codecats2026/reference/spec/`)
+- **Nomenclatura obligatoria:**
+  ```text
+  [correlativo]-plan-[descripcioncorta].md
+  ```
+  *Ejemplo:* `01-plan-autenticacion-supabase.md`, `02-plan-catalogo-propiedades.md`
+- **Contenido mínimo de la especificación:**
+  - Objetivo y alcance de la funcionalidad.
+  - Componentes y rutas involucradas en Next.js.
+  - Estructuras de datos / tablas de Supabase requeridas.
+  - Pasos detallados de implementación y criterios de aceptación.
+
+### ✅ Fase 2: Post-Implementación (Through / Walkthrough)
+- Una vez realizada y completada la implementación del plan, se debe generar el archivo de reporte y recorrido técnico (*through*).
+- **Carpeta destino:** `reference/through/` (o ruta relativa `codecats2026/reference/through/`)
+- **Nomenclatura obligatoria:**
+  ```text
+  [correlativo]-throught-[descripcioncorta].md
+  ```
+  *Ejemplo:* `01-throught-autenticacion-supabase.md`, `02-throught-catalogo-propiedades.md`
+- **Contenido mínimo del through:**
+  - Resumen de cambios y funcionalidades implementadas.
+  - Lista de archivos creados, modificados o refactorizados.
+  - Decisiones técnicas tomadas y resolución de retos encontrados.
+  - Pasos de verificación o pruebas ejecutadas para validar el trabajo.
+
+### 🔗 Regla de Correlativos Pareados
+- Tanto el plan como el through deben compartir el **mismo número correlativo** de dos dígitos (`01`, `02`, `03`...) y la **misma descripción corta**, garantizando un vínculo 1:1 directo entre la planificación y su ejecución.
 
 ---
 
