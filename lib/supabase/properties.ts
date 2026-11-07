@@ -1,6 +1,5 @@
-import { supabase, isSupabaseConfigured } from "./client";
+import { supabase } from "./client";
 import { Property } from "@/types/property";
-import { FEATURED_PROPERTIES, INSTANT_BOOK_PROPERTIES } from "@/data/mock-properties";
 
 export interface PropertyDbRow {
   id: string;
@@ -45,7 +44,7 @@ export interface PropertyDbRow {
 }
 
 /**
- * Maps a database row from Supabase (snake_case) to the client-facing Property model (camelCase).
+ * Convierte una fila de la tabla `properties` de Supabase (snake_case) a la interfaz TypeScript `Property` (camelCase).
  */
 export function mapRowToProperty(row: PropertyDbRow): Property {
   return {
@@ -89,54 +88,22 @@ export function mapRowToProperty(row: PropertyDbRow): Property {
 }
 
 /**
- * Fetches all properties from Supabase `properties` table.
- * If Supabase is not configured or an error occurs, falls back gracefully to local mock data.
+ * Consulta las propiedades ÚNICA Y EXCLUSIVAMENTE desde la base de datos de Supabase.
  */
-export async function getProperties(): Promise<{
-  properties: Property[];
-  source: "supabase" | "fallback";
-}> {
-  if (!isSupabaseConfigured) {
-    console.info(
-      "[Supabase] Ni NEXT_PUBLIC_SUPABASE_ANON_KEY ni NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY están configuradas en .env.local. Usando datos locales de respaldo."
-    );
-    return {
-      properties: [...FEATURED_PROPERTIES, ...INSTANT_BOOK_PROPERTIES],
-      source: "fallback",
-    };
+export async function getProperties(): Promise<Property[]> {
+  const { data, error } = await supabase
+    .from("properties")
+    .select("*")
+    .order("created_at", { ascending: true });
+
+  if (error) {
+    console.error("[Supabase] Error al consultar tabla properties:", error.message);
+    return [];
   }
 
-  try {
-    const { data, error } = await supabase
-      .from("properties")
-      .select("*")
-      .order("created_at", { ascending: true });
-
-    if (error) {
-      console.warn("[Supabase] Error consultando properties:", error.message);
-      return {
-        properties: [...FEATURED_PROPERTIES, ...INSTANT_BOOK_PROPERTIES],
-        source: "fallback",
-      };
-    }
-
-    if (!data || data.length === 0) {
-      console.info("[Supabase] La tabla properties está vacía. Mostrando datos locales de respaldo.");
-      return {
-        properties: [...FEATURED_PROPERTIES, ...INSTANT_BOOK_PROPERTIES],
-        source: "fallback",
-      };
-    }
-
-    return {
-      properties: (data as PropertyDbRow[]).map(mapRowToProperty),
-      source: "supabase",
-    };
-  } catch (err) {
-    console.error("[Supabase] Error inesperado en getProperties:", err);
-    return {
-      properties: [...FEATURED_PROPERTIES, ...INSTANT_BOOK_PROPERTIES],
-      source: "fallback",
-    };
+  if (!data || data.length === 0) {
+    return [];
   }
+
+  return (data as PropertyDbRow[]).map(mapRowToProperty);
 }

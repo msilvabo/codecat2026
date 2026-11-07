@@ -5,7 +5,7 @@
 Se completó la transición del catálogo estático de propiedades a una arquitectura conectada con **Supabase** (`https://ecfyeaatwwiflpxncqka.supabase.co`):
 1. **Esquema Relacional y Carga Inicial:** Se diseñó el esquema DDL de la tabla `public.properties`, con índices de rendimiento, políticas de seguridad RLS de lectura pública y el script SQL seed con las 12 propiedades originales de Bolivia.
 2. **Cliente Supabase en Next.js:** Se instaló `@supabase/supabase-js` y se implementó una capa de cliente robusta con tipado estricto en `lib/supabase/client.ts` y servicio de consulta con mapeo bidireccional en `lib/supabase/properties.ts`.
-3. **Manejo de Resiliencia y Fallback:** El servicio detecta automáticamente si las credenciales de Supabase están configuradas; de encontrarse pendientes o si la tabla estuviese vacía, recurre de forma transparente a los datos locales sin interrumpir la experiencia de usuario ni fallar en la generación estática (SSR/SSG).
+3. **Exclusividad de Datos desde Supabase:** Se eliminó por completo cualquier dependencia o fallback hacia `mock-properties.ts`. La función `getProperties()` consulta únicamente la tabla `properties` de Supabase. Si la tabla no tiene datos o no se conecta, no se inventan ni inyectan datos locales.
 4. **Paginación Inicial de 6 Propiedades:** Se modificó la cuadrícula inferior (`InstantBookingGrid`) para mostrar inicialmente **6 propiedades** (en lugar de 4), con avance de +6 al presionar "Cargar más propiedades exclusivas".
 5. **Indicador de Estado de Datos:** Se integró un indicador visual sutil en la interfaz que comunica el origen activo de los datos (`Supabase DB` o `Modo Local Fallback`) y el recuento total de propiedades activas.
 

@@ -5,8 +5,8 @@ import { HomePageContent } from "@/components/home/HomePageContent";
 import { getProperties } from "@/lib/supabase/properties";
 
 async function HomeData() {
-  const { properties, source } = await getProperties();
-  return <HomePageContent initialProperties={properties} initialSource={source} />;
+  const properties = await getProperties();
+  return <HomePageContent initialProperties={properties} />;
 }
 
 export default function Home() {

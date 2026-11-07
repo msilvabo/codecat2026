@@ -19,28 +19,22 @@ const DEFAULT_FILTERS: FilterState = {
 
 interface HomePageContentProps {
   initialProperties?: Property[];
-  initialSource?: "supabase" | "fallback";
 }
 
-export function HomePageContent({
-  initialProperties = [],
-  initialSource = "fallback",
-}: HomePageContentProps) {
-  const [properties, setProperties] = useState<Property[]>(initialProperties);
-  const [dataSource, setDataSource] = useState<"supabase" | "fallback">(initialSource);
-  const [isLoading, setIsLoading] = useState<boolean>(initialProperties.length === 0);
+export function HomePageContent({ initialProperties }: HomePageContentProps) {
+  const [properties, setProperties] = useState<Property[]>(initialProperties || []);
+  const [isLoading, setIsLoading] = useState<boolean>(!initialProperties);
   const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // If initialProperties wasn't provided or empty, load on mount
+  // If initialProperties wasn't provided, load directly from Supabase
   useEffect(() => {
-    if (initialProperties.length === 0) {
+    if (!initialProperties) {
       let isMounted = true;
       setIsLoading(true);
-      getProperties().then(({ properties: loaded, source }) => {
+      getProperties().then((loaded) => {
         if (isMounted) {
           setProperties(loaded);
-          setDataSource(source);
           setIsLoading(false);
         }
       });
@@ -168,29 +162,9 @@ export function HomePageContent({
         priceRangeLabel={priceRangeLabel}
       />
 
-      {/* Database Connection State Notification */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 mb-4 flex items-center justify-between text-xs">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#151D2A] border border-[#233044] text-slate-300">
-          <span
-            className={`w-2 h-2 rounded-full ${
-              dataSource === "supabase" ? "bg-emerald-400 animate-pulse" : "bg-amber-400"
-            }`}
-          />
-          <span>
-            Fuente:{" "}
-            <strong className="text-white">
-              {dataSource === "supabase"
-                ? "Supabase DB (ecfyeaatwwiflpxncqka)"
-                : "Modo Local Fallback (Esperando sincronización de Supabase)"}
-            </strong>
-          </span>
-          <span className="text-slate-400">({properties.length} propiedades activas)</span>
-        </div>
-      </div>
-
       {/* Active Filters Summary Bar */}
       {hasActiveFilters && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 mb-8">
           <div className="flex flex-wrap items-center justify-between gap-3 bg-[#151D2A]/60 border border-[#233044] rounded-2xl px-5 py-3 text-xs text-slate-300">
             <div className="flex flex-wrap items-center gap-2">
               <span className="font-semibold text-white flex items-center gap-1.5">
@@ -246,7 +220,18 @@ export function HomePageContent({
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-16 text-center">
           <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-[#151D2A] border border-[#233044] text-slate-300 text-sm">
             <span className="w-4 h-4 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin" />
-            Cargando catálogo desde Supabase...
+            Cargando propiedades desde Supabase...
+          </div>
+        </section>
+      ) : properties.length === 0 ? (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-16 text-center">
+          <div className="max-w-md mx-auto bg-[#151D2A] border border-[#233044] rounded-3xl p-10 shadow-2xl space-y-4">
+            <h3 className="text-xl font-bold text-white">
+              No hay propiedades en la base de datos
+            </h3>
+            <p className="text-slate-400 text-xs leading-relaxed">
+              La tabla de propiedades en Supabase aún no cuenta con registros cargados.
+            </p>
           </div>
         </section>
       ) : totalResults === 0 ? (
