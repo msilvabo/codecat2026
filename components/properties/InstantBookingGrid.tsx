@@ -11,7 +11,7 @@ interface InstantBookingGridProps {
 
 export function InstantBookingGrid({ properties, onSelectProperty }: InstantBookingGridProps) {
   const [activeFilterTab, setActiveFilterTab] = useState<"all" | "under50" | "suites">("all");
-  const [visibleCount, setVisibleCount] = useState(4);
+  const [visibleCount, setVisibleCount] = useState(6);
 
   // Filter properties based on tab
   const filteredProperties = properties.filter((item) => {
@@ -32,7 +32,7 @@ export function InstantBookingGrid({ properties, onSelectProperty }: InstantBook
   const hasMore = visibleCount < filteredProperties.length;
 
   const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + 4);
+    setVisibleCount((prev) => prev + 6);
   };
 
   return (
@@ -53,7 +53,7 @@ export function InstantBookingGrid({ properties, onSelectProperty }: InstantBook
           <button
             onClick={() => {
               setActiveFilterTab("all");
-              setVisibleCount(4);
+              setVisibleCount(6);
             }}
             className={`px-3.5 py-1.5 rounded-lg font-semibold transition-all ${
               activeFilterTab === "all"
@@ -66,7 +66,7 @@ export function InstantBookingGrid({ properties, onSelectProperty }: InstantBook
           <button
             onClick={() => {
               setActiveFilterTab("under50");
-              setVisibleCount(4);
+              setVisibleCount(6);
             }}
             className={`px-3.5 py-1.5 rounded-lg font-medium transition-all ${
               activeFilterTab === "under50"
@@ -79,7 +79,7 @@ export function InstantBookingGrid({ properties, onSelectProperty }: InstantBook
           <button
             onClick={() => {
               setActiveFilterTab("suites");
-              setVisibleCount(4);
+              setVisibleCount(6);
             }}
             className={`px-3.5 py-1.5 rounded-lg font-medium transition-all ${
               activeFilterTab === "suites"

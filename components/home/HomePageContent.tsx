@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { FilterState, Property } from "@/types/property";
-import { FEATURED_PROPERTIES, INSTANT_BOOK_PROPERTIES } from "@/data/mock-properties";
+import { getProperties } from "@/lib/supabase/properties";
 import { HeroSearch } from "../search/HeroSearch";
 import { CategoryFilters } from "../categories/CategoryFilters";
 import { FeaturedCollections } from "../properties/FeaturedCollections";
@@ -17,9 +17,38 @@ const DEFAULT_FILTERS: FilterState = {
   propertyType: undefined,
 };
 
-export function HomePageContent() {
+interface HomePageContentProps {
+  initialProperties?: Property[];
+  initialSource?: "supabase" | "fallback";
+}
+
+export function HomePageContent({
+  initialProperties = [],
+  initialSource = "fallback",
+}: HomePageContentProps) {
+  const [properties, setProperties] = useState<Property[]>(initialProperties);
+  const [dataSource, setDataSource] = useState<"supabase" | "fallback">(initialSource);
+  const [isLoading, setIsLoading] = useState<boolean>(initialProperties.length === 0);
   const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // If initialProperties wasn't provided or empty, load on mount
+  useEffect(() => {
+    if (initialProperties.length === 0) {
+      let isMounted = true;
+      setIsLoading(true);
+      getProperties().then(({ properties: loaded, source }) => {
+        if (isMounted) {
+          setProperties(loaded);
+          setDataSource(source);
+          setIsLoading(false);
+        }
+      });
+      return () => {
+        isMounted = false;
+      };
+    }
+  }, [initialProperties]);
 
   // Pure filtering logic
   const filterProperty = (item: Property, currentFilters: FilterState): boolean => {
@@ -71,15 +100,26 @@ export function HomePageContent() {
     return true;
   };
 
+  // Divide properties into Featured (Signature) and Instant Booking
+  const featuredList = useMemo(
+    () => properties.filter((p) => p.isFeatured),
+    [properties]
+  );
+
+  const instantList = useMemo(
+    () => properties.filter((p) => !p.isFeatured),
+    [properties]
+  );
+
   // Filtered property lists
   const filteredFeatured = useMemo(
-    () => FEATURED_PROPERTIES.filter((p) => filterProperty(p, filters)),
-    [filters]
+    () => featuredList.filter((p) => filterProperty(p, filters)),
+    [featuredList, filters]
   );
 
   const filteredInstant = useMemo(
-    () => INSTANT_BOOK_PROPERTIES.filter((p) => filterProperty(p, filters)),
-    [filters]
+    () => instantList.filter((p) => filterProperty(p, filters)),
+    [instantList, filters]
   );
 
   const totalResults = filteredFeatured.length + filteredInstant.length;
@@ -128,9 +168,29 @@ export function HomePageContent() {
         priceRangeLabel={priceRangeLabel}
       />
 
+      {/* Database Connection State Notification */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 mb-4 flex items-center justify-between text-xs">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#151D2A] border border-[#233044] text-slate-300">
+          <span
+            className={`w-2 h-2 rounded-full ${
+              dataSource === "supabase" ? "bg-emerald-400 animate-pulse" : "bg-amber-400"
+            }`}
+          />
+          <span>
+            Fuente:{" "}
+            <strong className="text-white">
+              {dataSource === "supabase"
+                ? "Supabase DB (ecfyeaatwwiflpxncqka)"
+                : "Modo Local Fallback (Esperando sincronización de Supabase)"}
+            </strong>
+          </span>
+          <span className="text-slate-400">({properties.length} propiedades activas)</span>
+        </div>
+      </div>
+
       {/* Active Filters Summary Bar */}
       {hasActiveFilters && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 mb-8">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
           <div className="flex flex-wrap items-center justify-between gap-3 bg-[#151D2A]/60 border border-[#233044] rounded-2xl px-5 py-3 text-xs text-slate-300">
             <div className="flex flex-wrap items-center gap-2">
               <span className="font-semibold text-white flex items-center gap-1.5">
@@ -181,8 +241,15 @@ export function HomePageContent() {
         </section>
       )}
 
-      {/* If no properties match any filters */}
-      {totalResults === 0 ? (
+      {/* Loading state indicator */}
+      {isLoading ? (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-16 text-center">
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-[#151D2A] border border-[#233044] text-slate-300 text-sm">
+            <span className="w-4 h-4 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin" />
+            Cargando catálogo desde Supabase...
+          </div>
+        </section>
+      ) : totalResults === 0 ? (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-16 text-center">
           <div className="max-w-md mx-auto bg-[#151D2A] border border-[#233044] rounded-3xl p-10 shadow-2xl space-y-4">
             <div className="w-14 h-14 rounded-full bg-[#1E293B] border border-[#233044] flex items-center justify-center mx-auto text-slate-400">
@@ -208,9 +275,11 @@ export function HomePageContent() {
       ) : (
         <>
           {/* Featured Showcase ("Colección Signature") */}
-          <FeaturedCollections properties={filteredFeatured} />
+          {filteredFeatured.length > 0 && (
+            <FeaturedCollections properties={filteredFeatured} />
+          )}
 
-          {/* Instant Booking 4-Column Grid */}
+          {/* Instant Booking 4-Column Grid with initial 6 items pagination */}
           <InstantBookingGrid properties={filteredInstant} />
         </>
       )}
