@@ -1,0 +1,628 @@
+<!DOCTYPE html><html class="dark scroll-smooth" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>LuxeStay — Alojamientos Exclusivos &amp; Alquiler Vacacional Premium</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#10B981', // Emerald green luxury accent
+              hover: '#059669',
+              light: '#34D399',
+              dark: '#064E3B'
+            },
+            surface: {
+              background: '#0B0F17',
+              card: '#151D2A',
+              cardHover: '#1B2637',
+              border: '#233044',
+              input: '#1A2433'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- Icons via Feather/Heroicons inline SVG -->
+<style data-purpose="custom-styling">
+    /* Custom subtle glassmorphism and scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B0F17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #233044;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #374761;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-[#0B0F17] text-slate-100 font-sans antialiased min-h-screen selection:bg-emerald-500 selection:text-white">
+<!-- BEGIN: NavigationBar -->
+<header class="sticky top-0 z-50 bg-[#0B0F17]/95 backdrop-blur-md border-b border-[#233044]/60 transition-all duration-200">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- Brand Logo -->
+<a class="flex items-center gap-3 group" data-purpose="brand-logo" href="#"><div class="w-9 h-9 flex items-center justify-center"><svg class="w-8 h-8 text-[#FF385C]" viewBox="0 0 32 32" fill="currentColor"><path d="M16 1c2.008 0 3.463.963 4.751 3.269l.533 1.025c1.954 3.83 6.115 12.54 7.1 14.836l.145.353c.667 1.591.91 2.472.966 3.396l.005.271c0 4.34-3.33 7.85-7.7 7.85-2.613 0-4.787-1.189-6.3-3.08-1.512 1.89-3.687 3.08-6.3 3.08-4.37 0-7.7-3.51-7.7-7.85 0-1.077.299-2.222.971-3.667l.145-.353c.985-2.296 5.146-11.006 7.1-14.836l.533-1.025C11.537 1.963 12.992 1 15 1zm0 2c-1.282 0-2.274.654-3.262 2.417l-.513.987C10.292 10.19 6.155 18.847 5.21 21.054c-.655 1.408-.81 2.308-.81 2.946 0 3.197 2.404 5.85 5.5 5.85 2.443 0 4.385-1.531 5.342-3.793l.36-.931.398.931c.957 2.262 2.899 3.793 5.342 3.793 3.096 0 5.5-2.653 5.5-5.85 0-.638-.155-1.538-.81-2.946-.945-2.207-5.082-10.864-7.015-14.65l-.513-.987C17.274 3.654 16.282 3 15 3zm0 13c2.757 0 5 2.243 5 5 0 2.217-1.442 4.095-3.447 4.767l-.453.136c-.361.065-.729.097-1.1.097-.371 0-.739-.032-1.1-.097l-.453-.136C12.442 25.095 11 23.217 11 21c0-2.757 2.243-5 5-5zm0 2c-1.654 0-3 1.346-3 3 0 1.258.784 2.33 1.884 2.766l.316.104c.26.059.526.09.8.09.274 0 .54-.031.8-.09l.316-.104C20.216 24.33 21 23.258 21 21c0-1.654-1.346-3-3-3z"></path></svg></div><span class="text-2xl font-bold tracking-tight text-white flex items-center lowercase font-sans">airbnb</span></a>
+<!-- Center Main Navigation Links -->
+<nav class="hidden md:flex items-center gap-1 bg-[#151D2A]/80 p-1.5 rounded-full border border-[#233044]" data-purpose="primary-navigation">
+<a class="px-5 py-2 rounded-full text-sm font-medium bg-emerald-500 text-white shadow-sm transition-all duration-200" href="#">
+            Alojamientos
+          </a>
+<a class="px-5 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all duration-200" href="#">
+            Experiencias
+          </a>
+<a class="px-5 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all duration-200" href="#">
+            Villas &amp; Áticos
+          </a>
+<a class="px-5 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all duration-200" href="#">
+            Departamentos
+          </a>
+</nav>
+<!-- Right Side User Actions -->
+<div class="flex items-center gap-3" data-purpose="user-menu">
+<a class="hidden lg:inline-flex items-center text-xs font-semibold px-4 py-2 rounded-full text-slate-200 hover:text-emerald-400 hover:bg-[#151D2A] border border-transparent hover:border-[#233044] transition-all" href="#">Pon tu espacio en Airbnb</a>
+<!-- Currency & Language Trigger -->
+<button class="p-2.5 rounded-full text-slate-300 hover:text-white hover:bg-[#151D2A] border border-transparent hover:border-[#233044] transition-colors" title="Idioma y Moneda: USD">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<!-- Notifications -->
+<button class="relative p-2.5 rounded-full text-slate-300 hover:text-white hover:bg-[#151D2A] border border-transparent hover:border-[#233044] transition-colors" title="Notificaciones">
+<span class="absolute top-2 right-2 w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<!-- User Pill Profile -->
+<div class="flex items-center gap-2 pl-2 pr-1.5 py-1.5 bg-[#151D2A] hover:bg-[#1E293B] border border-[#233044] rounded-full cursor-pointer transition-colors shadow-sm">
+<svg class="w-4 h-4 text-slate-400 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<div class="w-7 h-7 rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 flex items-center justify-center font-bold text-xs text-slate-900 overflow-hidden shadow-inner">
+<span class="font-semibold text-slate-950">JS</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- END: NavigationBar -->
+<main class="pb-24">
+<!-- BEGIN: HeroSearchSection -->
+<section class="relative pt-12 pb-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center" data-purpose="hero-search-area">
+<div class="max-w-3xl mx-auto space-y-4">
+<h1 class="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-white leading-tight">Encuentra tu <span class="font-serif italic font-normal text-emerald-400 underline decoration-emerald-500/40 underline-offset-8">mejor estadía</span>.</h1>
+<p class="text-slate-400 text-base sm:text-lg max-w-xl mx-auto">
+          Alojamientos de diseño, residencias de descanso y estancias extraordinarias con verificación premium.
+        </p>
+</div>
+<!-- Floating Modern Dark Search Pill (Airbnb inspired) -->
+<div class="mt-9 max-w-4xl mx-auto">
+<div class="bg-[#151D2A] border border-[#233044] rounded-3xl sm:rounded-full p-2.5 shadow-2xl shadow-black/60 flex flex-col md:flex-row items-center divide-y md:divide-y-0 md:divide-x divide-[#233044]">
+<!-- Search Block: Dónde -->
+<div class="flex-1 w-full text-left px-5 py-2.5 hover:bg-[#1B2637] rounded-2xl md:rounded-full transition-colors cursor-pointer group">
+<label class="block text-[11px] font-bold uppercase tracking-wider text-emerald-400 group-hover:text-emerald-300">Dónde</label>
+<input class="w-full bg-transparent border-0 p-0 text-sm font-medium text-white placeholder-slate-500 focus:ring-0 truncate" placeholder="Explora destinos (ej. Cancún, Miami)" type="text" value="Calacoto, La Paz">
+</div>
+<!-- Search Block: Fechas -->
+<div class="flex-1 w-full text-left px-5 py-2.5 hover:bg-[#1B2637] rounded-2xl md:rounded-full transition-colors cursor-pointer group">
+<label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-slate-200">Fechas</label>
+<p class="text-sm font-medium text-slate-200 truncate">14 nov. — 20 nov. (6 noches)</p>
+</div>
+<!-- Search Block: Quién / Huéspedes -->
+<div class="flex-1 w-full text-left px-5 py-2.5 hover:bg-[#1B2637] rounded-2xl md:rounded-full transition-colors cursor-pointer group">
+<label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-slate-200">Quién</label>
+<p class="text-sm font-medium text-slate-200 truncate">2 huéspedes · 1 habitación</p>
+</div>
+<!-- Search Submit Button -->
+<div class="w-full md:w-auto p-1.5 flex justify-end">
+<button class="w-full md:w-auto px-6 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-semibold rounded-2xl md:rounded-full flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 transition-all duration-200 hover:scale-[1.02]">
+<svg class="w-4 h-4 text-slate-950 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-sm">Buscar</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSearchSection -->
+<!-- BEGIN: QuickCategoryFilters -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12" data-purpose="quick-category-filters">
+<div class="flex items-center justify-between gap-4 border-b border-[#233044]/80 pb-4">
+<!-- Category Buttons Horizontal Scroll -->
+<div class="flex items-center gap-2 overflow-x-auto hide-scrollbar py-1">
+<!-- Category Item (Active) -->
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold bg-emerald-500/10 border border-emerald-500 text-emerald-400 shrink-0 transition-all">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Todo</span>
+</button>
+<!-- Category Item -->
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold bg-[#151D2A] hover:bg-[#1B2637] border border-[#233044] text-slate-300 hover:text-white shrink-0 transition-all">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Villas de lujo</span>
+</button>
+<!-- Category Item -->
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold bg-[#151D2A] hover:bg-[#1B2637] border border-[#233044] text-slate-300 hover:text-white shrink-0 transition-all">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21a9 9 0 110-18 9 9 0 010 18z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Frente al mar</span>
+</button>
+<!-- Category Item -->
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold bg-[#151D2A] hover:bg-[#1B2637] border border-[#233044] text-slate-300 hover:text-white shrink-0 transition-all">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Cabañas en el bosque</span>
+</button>
+<!-- Category Item -->
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold bg-[#151D2A] hover:bg-[#1B2637] border border-[#233044] text-slate-300 hover:text-white shrink-0 transition-all">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Áticos con piscina</span>
+</button>
+<!-- Category Item -->
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold bg-[#151D2A] hover:bg-[#1B2637] border border-[#233044] text-slate-300 hover:text-white shrink-0 transition-all">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Pet friendly</span>
+</button>
+</div>
+<!-- Filter Action Trigger -->
+<button class="shrink-0 flex items-center gap-2.5 px-4 py-2.5 rounded-full text-xs font-semibold bg-[#151D2A] hover:bg-[#1B2637] border border-[#233044] text-slate-200 transition-colors">
+<svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="hidden sm:inline">Filtros avanzados</span>
+</button>
+</div>
+</section>
+<!-- END: QuickCategoryFilters -->
+<!-- BEGIN: FeaturedCollections -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16" data-purpose="featured-collections">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+<div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+<span class="text-xs uppercase tracking-widest text-emerald-400 font-bold">Colección Signature</span>
+</div>
+<h2 class="text-2xl sm:text-3xl font-semibold text-white mt-1">Alojamientos destacados para tus fechas</h2>
+<p class="text-slate-400 text-sm mt-1">Propiedades seleccionadas meticulosamente por confort, diseño y amenidades premium.</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 rounded-full bg-[#151D2A] border border-[#233044] flex items-center justify-center text-slate-300 hover:text-white hover:border-slate-500 transition-colors" title="Anterior">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<button class="w-9 h-9 rounded-full bg-[#151D2A] border border-[#233044] flex items-center justify-center text-slate-300 hover:text-white hover:border-slate-500 transition-colors" title="Siguiente">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Featured Two-Column Major Showcases -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Featured Card 1 -->
+<article class="bg-[#151D2A] border border-[#233044] rounded-3xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300 group flex flex-col shadow-xl shadow-black/40">
+<div class="relative h-72 sm:h-84 overflow-hidden">
+<!-- Property Main Visual -->
+<img alt="The Glass Pavilion en Beverly Hills" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOm8tEBMUSI6t8Ju87mrPecaGYy6S8Sl_fFipBE3HSCi1Zr2S4TQOJNGVscXiiZm6mEyYmKUF_dU3SnlDC1QPpWtJJPweWkj8N_M5y3iEQRH4Z2Up-ojPZ8lFyIZw0MIePsVXwqHIgv98i8U8xdb_4R-TGHefgaACrHkxglVzAaNi_hHO9onNMAlJSz3s0RH4dKsFmgmWaf3l1w0G8ODj8MA3Tw1Hxy2KHcJ_AYLA">
+<div class="absolute inset-0 bg-gradient-to-t from-[#151D2A] via-transparent to-black/30"></div>
+<!-- Badges overlay -->
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md text-emerald-400 border border-emerald-500/30">
+                ★ Favorito de huéspedes
+              </span>
+<span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500 text-slate-950">
+                Superanfitrión
+              </span>
+</div>
+<!-- Favorite Button -->
+<button class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:text-rose-400 transition-colors" title="Guardar">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<!-- Bottom overlay detail -->
+<div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-slate-300">
+<span class="inline-flex items-center gap-1.5 bg-[#0B0F17]/80 backdrop-blur-sm px-2.5 py-1 rounded-md border border-[#233044]">
+<svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                Disponible del 14 al 20 nov.
+              </span>
+<span class="bg-black/60 px-2 py-1 rounded text-slate-300 font-mono text-[11px]">1/8 fotos</span>
+</div>
+</div>
+<!-- Card Content Body -->
+<div class="p-6 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between gap-2 mb-2">
+<p class="text-xs uppercase tracking-wider text-slate-400 font-semibold flex items-center gap-1">
+<svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                  Calacoto, La Paz · Zona Sur
+                </p>
+<div class="flex items-center gap-1 text-sm font-semibold text-emerald-400">
+<span class="">★ 4.98</span>
+<span class="text-slate-400 font-normal text-xs">(84 reseñas)</span>
+</div>
+</div>
+<h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                Villa Sanctuary con Piscina Templada &amp; Vista Panorámica
+              </h3>
+<!-- Feature pills -->
+<div class="flex flex-wrap items-center gap-2 mt-3 text-xs text-slate-300">
+<span class="bg-[#1F2B3D] px-2.5 py-1 rounded-md">6 huéspedes</span>
+<span class="bg-[#1F2B3D] px-2.5 py-1 rounded-md">3 habitaciones · 4 camas</span>
+<span class="bg-[#1F2B3D] px-2.5 py-1 rounded-md">Jacuzzi privado</span>
+<span class="bg-[#1F2B3D] px-2.5 py-1 rounded-md">Wifi 500 Mbps</span>
+</div>
+</div>
+<!-- Price & Action Footer -->
+<div class="mt-6 pt-4 border-t border-[#233044] flex items-center justify-between">
+<div>
+<div class="flex items-baseline gap-1.5">
+<span class="text-2xl font-bold text-white">$145 USD</span>
+<span class="text-slate-400 text-xs font-medium">/ noche</span>
+</div>
+<p class="text-xs text-slate-400 mt-0.5">$870 USD total por 6 noches</p>
+</div>
+<button class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs tracking-wider uppercase rounded-xl transition-all shadow-md shadow-emerald-500/20">
+                Reservar
+              </button>
+</div>
+</div>
+</article>
+<!-- Featured Card 2 -->
+<article class="bg-[#151D2A] border border-[#233044] rounded-3xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300 group flex flex-col shadow-xl shadow-black/40">
+<div class="relative h-72 sm:h-84 overflow-hidden">
+<!-- Property Main Visual -->
+<img alt="Azure Heights Penthouse" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWun9uO-STRl7jhBtRy3vaZK-2PTX4y6_barxJXBQIsYkyZFIyEkRxlE_a6K6ozB5wWkFnUlpW5z44suOkEZMLZztLXRLvlUROwjhEEIWrNF4u9MwxEzDPJzIznmO3EOXSRTEHBDdzNA5Fy99ihI8t7yXvbLHIsq2xylPPU6OGlY4AEIo40d4P-vKAo-RAlgaPpqCt34rb-DvwevWdeA8RyTTYuFIVqG5Yv5I4dmc">
+<div class="absolute inset-0 bg-gradient-to-t from-[#151D2A] via-transparent to-black/30"></div>
+<!-- Badges overlay -->
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md text-emerald-400 border border-emerald-500/30">
+                ★ Más valorado
+              </span>
+<span class="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500 text-slate-950">
+                Reserva express
+              </span>
+</div>
+<!-- Favorite Button -->
+<button class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:text-rose-400 transition-colors" title="Guardar">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<!-- Bottom overlay detail -->
+<div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-slate-300">
+<span class="inline-flex items-center gap-1.5 bg-[#0B0F17]/80 backdrop-blur-sm px-2.5 py-1 rounded-md border border-[#233044]">
+<svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                Disponible del 15 al 22 nov.
+              </span>
+<span class="bg-black/60 px-2 py-1 rounded text-slate-300 font-mono text-[11px]">1/12 fotos</span>
+</div>
+</div>
+<!-- Card Content Body -->
+<div class="p-6 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between gap-2 mb-2">
+<p class="text-xs uppercase tracking-wider text-slate-400 font-semibold flex items-center gap-1">
+<svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                  San Miguel / Achumani · La Paz
+                </p>
+<div class="flex items-center gap-1 text-sm font-semibold text-emerald-400">
+<span class="">★ 4.95</span>
+<span class="text-slate-400 font-normal text-xs">(112 reseñas)</span>
+</div>
+</div>
+<h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                Ático Sky Loft con Ventanales de Techo a Suelo y Terraza
+              </h3>
+<!-- Feature pills -->
+<div class="flex flex-wrap items-center gap-2 mt-3 text-xs text-slate-300">
+<span class="bg-[#1F2B3D] px-2.5 py-1 rounded-md">4 huéspedes</span>
+<span class="bg-[#1F2B3D] px-2.5 py-1 rounded-md">2 habitaciones · 2 baños</span>
+<span class="bg-[#1F2B3D] px-2.5 py-1 rounded-md">Parrilla a gas</span>
+<span class="bg-[#1F2B3D] px-2.5 py-1 rounded-md">Estacionamiento techado</span>
+</div>
+</div>
+<!-- Price & Action Footer -->
+<div class="mt-6 pt-4 border-t border-[#233044] flex items-center justify-between">
+<div>
+<div class="flex items-baseline gap-1.5">
+<span class="text-2xl font-bold text-white">$115 USD</span>
+<span class="text-slate-400 text-xs font-medium">/ noche</span>
+</div>
+<p class="text-xs text-slate-400 mt-0.5">$690 USD total por 6 noches</p>
+</div>
+<button class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs tracking-wider uppercase rounded-xl transition-all shadow-md shadow-emerald-500/20">
+                Reservar
+              </button>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- END: FeaturedCollections -->
+<!-- BEGIN: InstantBookingGrid -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-purpose="instant-bookings-grid">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+<div>
+<h2 class="text-2xl font-bold text-white">Nuevos en el mercado con reserva inmediata</h2>
+<p class="text-slate-400 text-sm mt-1">Alojamientos recién auditados, listos para confirmar sin esperas de anfitrión.</p>
+</div>
+<!-- Filter Tabs -->
+<div class="flex items-center gap-1 bg-[#151D2A] p-1 rounded-xl border border-[#233044] text-xs">
+<button class="px-3.5 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-semibold">Todos</button>
+<button class="px-3.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800">Menos de $50/noche</button>
+<button class="px-3.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800">Suites y Condos</button>
+</div>
+</div>
+<!-- 4-Column Grid Inspired by Airbnb & LuxeEstate -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<article class="bg-[#151D2A] border border-[#233044] rounded-2xl overflow-hidden hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 group flex flex-col">
+<div class="relative aspect-4/3 overflow-hidden">
+<img alt="Condo moderno en Calacoto" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtEXUoAzDpt7YucAsC9Dq12mqO86Wn3tGxl3YWW8FGhgObGonsN90RLX_VCZjOGUCWgNiWaMh6Z_BWKxec8mf0NTVfi5297-r9fptOdLD4b5MAnNV5gF7edzBvNmQ6zaLPZ7vZlwqpbxc6NJhK4P6z5Vct99RohhKdBekKBOGy1XXeXiFOoeB6Ffp4M6Ak0FlexEWPDi7tHgM2IylT3KB7nfEotl0c_FoMwFbUwHc">
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-950/80 backdrop-blur-sm text-emerald-400 border border-emerald-500/30">
+              Reserva Inmediata
+            </span>
+<button class="absolute top-3 right-3 p-1.5 rounded-full bg-black/40 hover:bg-black/70 text-white transition-colors" title="Guardar">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between text-xs mb-1">
+<span class="text-slate-400 font-medium">Calacoto, La Paz</span>
+<span class="text-emerald-400 font-semibold">★ 4.93</span>
+</div>
+<h4 class="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors line-clamp-1">
+                Condo Minimalista &amp; Luz Natural
+              </h4>
+<p class="text-xs text-slate-400 mt-1">2 camas · 1 baño · Calefacción</p>
+</div>
+<div class="mt-4 pt-3 border-t border-[#233044] flex items-center justify-between">
+<div>
+<span class="text-base font-bold text-white">$38 USD</span>
+<span class="text-[11px] text-slate-400">/ noche</span>
+</div>
+<span class="text-[11px] text-slate-400 font-medium">18-24 Nov</span>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-[#151D2A] border border-[#233044] rounded-2xl overflow-hidden hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 group flex flex-col">
+<div class="relative aspect-4/3 overflow-hidden">
+<img alt="Apartamento en Cochabamba con vista" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAECSgFTwWx35FUCGtFbXinZ-jnTqW-gn8y_jTUqu9BlsZVepP_haOaMikpyXwZv7aIJDzT9YJIKZnGx_N50aY-Xu567gC_UsqjIqWXMPJzsycq9svHv6UlmwXreAwSGNtskMjv13bQhyn4hFlhcM3yOrfScLsEhCqw1cDc6fm8sgJWLjUuGu8jJp34HtRKKDWK3Nrl8z69MTDRutAtmxoIfHNIg_kTx8e6WQNfRG8">
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-950/80 backdrop-blur-sm text-emerald-400 border border-emerald-500/30">
+              Superanfitrión
+            </span>
+<button class="absolute top-3 right-3 p-1.5 rounded-full bg-black/40 hover:bg-black/70 text-white transition-colors" title="Guardar">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between text-xs mb-1">
+<span class="text-slate-400 font-medium">Cala Cala, Cochabamba</span>
+<span class="text-emerald-400 font-semibold">★ 4.98</span>
+</div>
+<h4 class="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors line-clamp-1">
+                Suite Ejecutiva con Balcón Verde
+              </h4>
+<p class="text-xs text-slate-400 mt-1">1 cama king · Smart TV · Gym</p>
+</div>
+<div class="mt-4 pt-3 border-t border-[#233044] flex items-center justify-between">
+<div>
+<span class="text-base font-bold text-white">$45 USD</span>
+<span class="text-[11px] text-slate-400">/ noche</span>
+</div>
+<span class="text-[11px] text-slate-400 font-medium">20-25 Nov</span>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-[#151D2A] border border-[#233044] rounded-2xl overflow-hidden hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 group flex flex-col">
+<div class="relative aspect-4/3 overflow-hidden">
+<img alt="Cabaña de montaña moderna" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAktsQ3-a-BHmT2Q93ECTnyM0YCd2lNId35sF0pdCeRN4rVaO44JTKVvPQ-wSrv5pMn80MJAaQQVMGHax79KnLqtbzt9DJdKrzxuImtwCbsWUCdn3852eU4fEXR_rFHP3l6zvLMX3swwokbUyZ5yDeLdzWRVpUB2R9M_bigwgAdWA_vPr_Y5-4lkvJWWYCd6EU8iQE2P7_qcnok6Q5sLi2Bu4PTlhek7NaM-19K10A">
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-950/80 backdrop-blur-sm text-amber-400 border border-amber-500/30">
+              Diseño Arquitectónico
+            </span>
+<button class="absolute top-3 right-3 p-1.5 rounded-full bg-black/40 hover:bg-black/70 text-white transition-colors" title="Guardar">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between text-xs mb-1">
+<span class="text-slate-400 font-medium">Samaipata, Santa Cruz</span>
+<span class="text-emerald-400 font-semibold">★ 4.96</span>
+</div>
+<h4 class="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors line-clamp-1">
+                Cabaña Nórdica entre las Colinas
+              </h4>
+<p class="text-xs text-slate-400 mt-1">4 huéspedes · Chimenea · Jardín</p>
+</div>
+<div class="mt-4 pt-3 border-t border-[#233044] flex items-center justify-between">
+<div>
+<span class="text-base font-bold text-white">$62 USD</span>
+<span class="text-[11px] text-slate-400">/ noche</span>
+</div>
+<span class="text-[11px] text-slate-400 font-medium">Este finde</span>
+</div>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="bg-[#151D2A] border border-[#233044] rounded-2xl overflow-hidden hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 group flex flex-col">
+<div class="relative aspect-4/3 overflow-hidden">
+<img alt="Dormitorio moderno en La Paz" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgshlpWpsDPijOrFxPs0kI5pMnEdAbbhYh6IcvQ3itsMTx3j45M7d9U634RSTAduMM2q3pfh_lPrjDHYlpEEHyOPJJwBiqvJj5ctwSvV-Y-e2QwXAOqMJB8-STQj4TsmHg65ZdeXbEkjE-A2MBOxwLVK2uCeP4IdXUKrEeM2X9TMWIcovRq3VWo766daKs_lpRQ0JUYoBDMVuxCyP4WE1Nr1grNQf-GP6Ue2tY-b0">
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-950/80 backdrop-blur-sm text-emerald-400 border border-emerald-500/30">
+              Reserva Inmediata
+            </span>
+<button class="absolute top-3 right-3 p-1.5 rounded-full bg-black/40 hover:bg-black/70 text-white transition-colors" title="Guardar">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between text-xs mb-1">
+<span class="text-slate-400 font-medium">Equipetrol, Santa Cruz</span>
+<span class="text-emerald-400 font-semibold">★ 4.90</span>
+</div>
+<h4 class="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors line-clamp-1">
+                Estudio Loft con Acceso a Piscina
+              </h4>
+<p class="text-xs text-slate-400 mt-1">2 camas · Sauna · Co-work</p>
+</div>
+<div class="mt-4 pt-3 border-t border-[#233044] flex items-center justify-between">
+<div>
+<span class="text-base font-bold text-white">$52 USD</span>
+<span class="text-[11px] text-slate-400">/ noche</span>
+</div>
+<span class="text-[11px] text-slate-400 font-medium">22-28 Nov</span>
+</div>
+</div>
+</article>
+</div>
+<!-- Load More Properties Button -->
+<div class="mt-12 text-center">
+<button class="px-8 py-3.5 rounded-full bg-[#151D2A] hover:bg-[#1B2637] border border-[#233044] hover:border-slate-500 text-slate-200 text-sm font-semibold transition-all shadow-lg shadow-black/40">
+          Cargar más propiedades exclusivas
+        </button>
+</div>
+</section>
+<!-- END: InstantBookingGrid -->
+</main>
+<!-- BEGIN: SiteFooter -->
+<footer class="bg-[#080C12] border-t border-[#233044]/80 text-slate-400 text-sm" data-purpose="site-footer">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+<!-- Column 1 -->
+<div>
+<h4 class="text-white font-semibold text-xs tracking-wider uppercase mb-4">Soporte y Asistencia</h4>
+<ul class="space-y-2.5 text-xs">
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">Centro de ayuda</a></li>
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">AirCover para huéspedes</a></li>
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">Cancelaciones flexibles</a></li>
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">Opciones de accesibilidad</a></li>
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">Protocolos de limpieza</a></li>
+</ul>
+</div>
+<!-- Column 2 -->
+<div>
+<h4 class="text-white font-semibold text-xs tracking-wider uppercase mb-4">Comunidad</h4>
+<ul class="space-y-2.5 text-xs">
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">Airbnb Diversidad</a></li>
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">Estancias para emergencias</a></li>
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">Reseñas de la comunidad</a></li>
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">Invitaciones y recompensas</a></li>
+</ul>
+</div>
+<!-- Column 3 -->
+<div>
+<h4 class="text-white font-semibold text-xs tracking-wider uppercase mb-4">Anfitriones</h4>
+<ul class="space-y-2.5 text-xs">
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">Pon tu alojamiento</a></li>
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">AirCover para anfitriones</a></li>
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">Recursos de hospedaje</a></li>
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">Foro de la comunidad</a></li>
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">Hospedar con responsabilidad</a></li>
+</ul>
+</div>
+<!-- Column 4 -->
+<div>
+<h4 class="text-white font-semibold text-xs tracking-wider uppercase mb-4">Airbnb</h4>
+<ul class="space-y-2.5 text-xs">
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">Sala de prensa</a></li>
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">Nuevas funciones</a></li>
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">Carreras e inversionistas</a></li>
+<li class=""><a class="hover:text-emerald-400 transition-colors" href="#">Airbnb Plus Exclusive</a></li>
+</ul>
+</div>
+</div>
+<!-- Bottom Bar -->
+<div class="pt-8 border-t border-[#1C2636] flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+<div class="flex flex-wrap items-center gap-4 text-slate-400">
+<span class="">© 2025 Airbnb, Inc. Todos los derechos reservados.</span>
+<span class="hidden sm:inline">·</span>
+<a class="hover:text-emerald-400 transition-colors" href="#">Privacidad</a>
+<span class="hidden sm:inline">·</span>
+<a class="hover:text-emerald-400 transition-colors" href="#">Términos y condiciones</a>
+<span class="hidden sm:inline">·</span>
+<a class="hover:text-emerald-400 transition-colors" href="#">Mapa del sitio</a>
+</div>
+<div class="flex items-center gap-5">
+<div class="flex items-center gap-1.5 text-white font-medium">
+<svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Español (BO)</span>
+</div>
+<span class="text-white font-medium">$ USD</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: SiteFooter -->
+<!-- Interactive Search and Bookmark Micro-interactions -->
+<script data-purpose="interaction-handlers">
+    document.addEventListener('DOMContentLoaded', () => {
+      // Toggle favorite heart icons color
+      const favoriteButtons = document.querySelectorAll('button[title="Guardar"]');
+      favoriteButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const svg = btn.querySelector('svg');
+          if (svg.classList.contains('text-rose-500')) {
+            svg.classList.remove('text-rose-500', 'fill-rose-500');
+            svg.classList.add('text-white');
+          } else {
+            svg.classList.remove('text-white');
+            svg.classList.add('text-rose-500', 'fill-rose-500');
+          }
+        });
+      });
+    });
+  </script>
+
+
+</body></html>

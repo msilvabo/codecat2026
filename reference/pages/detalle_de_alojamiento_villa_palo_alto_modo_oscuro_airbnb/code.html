@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Villa Serenity · Palo Alto | Airbnb Luxe</title>
+<!-- Tailwind CSS CDN with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Font Awesome Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              coral: '#FF385C',
+              darkCoral: '#E00B41',
+              teal: '#00A699',
+              darkTeal: '#008489',
+              gold: '#FFB400'
+            },
+            surface: {
+              base: '#0B0F17',
+              card: '#161F30',
+              cardHover: '#1C273C',
+              border: '#27354A',
+              lightBorder: '#334155'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-enhancements">
+    /* Subtle custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b0f17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #27354a;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+    .glassmorphism {
+      background: rgba(22, 31, 48, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="bg-surface-base text-slate-100 font-sans antialiased selection:bg-brand-coral selection:text-white">
+<!-- BEGIN: MainHeader -->
+<header class="sticky top-0 z-50 glassmorphism border-b border-surface-border">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- Logo Airbnb Luxury -->
+<a class="flex items-center gap-2 group" data-purpose="brand-logo" href="#">
+<div class="w-10 h-10 rounded-xl bg-brand-coral flex items-center justify-center text-white text-xl shadow-lg shadow-brand-coral/30 group-hover:scale-105 transition-transform duration-300">
+<i class="fa-brands fa-airbnb"></i>
+</div>
+<div class="flex flex-col">
+<span class="text-xl font-extrabold tracking-tight text-white flex items-center gap-1.5">
+              airbnb <span class="text-xs uppercase tracking-widest bg-brand-coral/20 text-brand-coral px-1.5 py-0.5 rounded font-bold">Luxe</span>
+</span>
+<span class="text-[10px] text-slate-400 font-medium tracking-wide">Palo Alto Estate</span>
+</div>
+</a>
+<!-- Center Nav Categories -->
+<nav aria-label="Navegación principal" class="hidden md:flex items-center space-x-1 lg:space-x-2 bg-surface-card/80 p-1.5 rounded-full border border-surface-border">
+<a class="px-5 py-2 text-sm font-semibold rounded-full bg-slate-800 text-white shadow-sm flex items-center gap-2 transition-all" href="#">
+<i class="fa-solid fa-house text-brand-coral text-xs"></i> Alojamientos
+          </a>
+<a class="px-5 py-2 text-sm font-medium rounded-full text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all flex items-center gap-2" href="#">
+<i class="fa-solid fa-compass text-slate-400 text-xs"></i> Experiencias
+          </a>
+<a class="px-5 py-2 text-sm font-medium rounded-full text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all flex items-center gap-2" href="#">
+<i class="fa-solid fa-bell-concierge text-slate-400 text-xs"></i> Servicios Luxe
+          </a>
+</nav>
+<!-- Right User Actions -->
+<div class="flex items-center gap-3" data-purpose="user-actions">
+<a class="hidden lg:inline-flex text-xs font-semibold text-slate-300 hover:text-white hover:bg-surface-card px-4 py-2.5 rounded-full border border-transparent hover:border-surface-border transition-all" href="#">
+            Pon tu espacio en Airbnb
+          </a>
+<button aria-label="Selector de idioma" class="w-10 h-10 rounded-full flex items-center justify-center text-slate-300 hover:text-white hover:bg-surface-card border border-surface-border transition" type="button">
+<i class="fa-solid fa-globe text-sm"></i>
+</button>
+<!-- Profile Badge dropdown button -->
+<div class="flex items-center gap-3 bg-surface-card hover:bg-surface-cardHover p-1.5 pl-3.5 rounded-full border border-surface-border cursor-pointer transition">
+<i class="fa-solid fa-bars text-xs text-slate-300"></i>
+<div class="relative">
+<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-brand-coral to-rose-400 flex items-center justify-center text-white font-bold text-xs shadow-md">
+                SJ
+              </div>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full ring-2 ring-surface-card"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+<!-- BEGIN: TitleAndActionHeader -->
+<section class="space-y-4" data-purpose="listing-header">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="space-y-2">
+<!-- Badges -->
+<div class="flex flex-wrap items-center gap-2 text-xs font-semibold">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-coral/15 text-brand-coral border border-brand-coral/30">
+<i class="fa-solid fa-trophy text-xs"></i> Favorito entre huéspedes
+            </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/15 text-teal-300 border border-teal-500/30">
+<i class="fa-solid fa-gem text-xs"></i> Airbnb Luxe Verified
+            </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30">
+<i class="fa-solid fa-medal text-xs"></i> Superanfitrión
+            </span>
+</div>
+<!-- Listing Main Title -->
+<h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
+            Villa Serenity: Residencia Contemporánea en Palo Alto
+          </h1>
+<!-- Location & Reviews Subtitle -->
+<div class="flex flex-wrap items-center gap-y-2 gap-x-4 text-sm text-slate-300">
+<span class="flex items-center gap-1 font-semibold text-white">
+<i class="fa-solid fa-star text-brand-gold text-xs"></i> 4.98
+            </span>
+<span class="text-slate-500">·</span>
+<a class="underline hover:text-brand-coral transition font-medium" href="#reviews">124 evaluaciones verificadas</a>
+<span class="text-slate-500">·</span>
+<span class="flex items-center gap-1.5 text-slate-300">
+<i class="fa-solid fa-location-dot text-brand-coral text-xs"></i> 1234 Serenity Lane, Palo Alto, California, EE. UU.
+            </span>
+</div>
+</div>
+<!-- Social & Save Actions -->
+<div class="flex items-center gap-3 self-start md:self-auto">
+<button class="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-surface-card hover:bg-surface-cardHover border border-surface-border text-slate-200 transition shadow-sm" type="button">
+<i class="fa-solid fa-arrow-up-from-bracket text-xs"></i> Compartir
+          </button>
+<button class="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-surface-card hover:bg-surface-cardHover border border-surface-border text-rose-400 transition shadow-sm" type="button">
+<i class="fa-solid fa-heart text-xs"></i> Guardar
+          </button>
+</div>
+</div>
+</section>
+<!-- END: TitleAndActionHeader -->
+<!-- BEGIN: PhotoGallery -->
+<!-- Matches visual structure of screen_details.png with dark luxury finish -->
+<section class="space-y-4" data-purpose="photo-gallery">
+<div class="relative group rounded-3xl overflow-hidden border border-surface-border bg-surface-card shadow-2xl">
+<!-- Main Hero Image -->
+<div class="relative h-[360px] sm:h-[480px] lg:h-[560px] w-full overflow-hidden">
+<img alt="Fachada de diseño arquitectónico contemporáneo en Palo Alto" class="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl0iV91T7dml92HVG2yoVHdOwiphPHAZZh9445KlcBeLZm4jK5eFDUZxxsu8vgIFadVCoe7gdQQkHvX0CSAkow2LaTrqpzwstxIueXp5DKFkdI0LV2F_7WS9qHmqdbkz-rqEdVWaMOR8FwZZa2QP_kGuzLSQuUFw807C8GFz_0xLAl1rAIHBTbSTx01gOGB1rOpTjnq03qLY_czv7zZoO9MpG297qjfSxHgcdI_wmVkQsJWl8HisBc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-base/80 via-transparent to-black/30 pointer-events-none"></div>
+<!-- Top-Left Floating Badges -->
+<div class="absolute top-5 left-5 flex items-center gap-2">
+<span class="px-3.5 py-1.5 rounded-lg bg-emerald-950/80 backdrop-blur-md text-emerald-400 border border-emerald-500/40 text-xs font-extrabold tracking-wider uppercase shadow-lg">
+              PREMIUM
+            </span>
+<span class="px-3.5 py-1.5 rounded-lg bg-surface-card/80 backdrop-blur-md text-white border border-surface-border text-xs font-bold tracking-wider uppercase shadow-lg">
+              NEW
+            </span>
+</div>
+<!-- Bottom-Right View All Button -->
+<div class="absolute bottom-5 right-5">
+<button class="flex items-center gap-2.5 px-5 py-2.5 bg-slate-900/85 hover:bg-slate-900 backdrop-blur-md border border-slate-700/80 hover:border-slate-500 text-white rounded-xl text-sm font-semibold shadow-xl transition-all duration-200" type="button">
+<i class="fa-solid fa-grip text-xs text-brand-coral"></i> Mostrar todas las fotos (28)
+            </button>
+</div>
+</div>
+</div>
+<!-- Secondary Photo Thumbnails Row (as shown in reference image) -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4" data-purpose="thumbnail-strip">
+<div class="relative h-28 sm:h-36 rounded-2xl overflow-hidden border-2 border-brand-teal/80 shadow-md group cursor-pointer">
+<img alt="Vestíbulo moderno con acceso minimalista" class="w-full h-full object-cover object-left group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl0iV91T7dml92HVG2yoVHdOwiphPHAZZh9445KlcBeLZm4jK5eFDUZxxsu8vgIFadVCoe7gdQQkHvX0CSAkow2LaTrqpzwstxIueXp5DKFkdI0LV2F_7WS9qHmqdbkz-rqEdVWaMOR8FwZZa2QP_kGuzLSQuUFw807C8GFz_0xLAl1rAIHBTbSTx01gOGB1rOpTjnq03qLY_czv7zZoO9MpG297qjfSxHgcdI_wmVkQsJWl8HisBc"/>
+<span class="absolute bottom-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded bg-black/60 backdrop-blur text-white">Entrada</span>
+</div>
+<div class="relative h-28 sm:h-36 rounded-2xl overflow-hidden border border-surface-border shadow-md group cursor-pointer">
+<img alt="Sala de estar con luz natural y muebles de diseño" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl0iV91T7dml92HVG2yoVHdOwiphPHAZZh9445KlcBeLZm4jK5eFDUZxxsu8vgIFadVCoe7gdQQkHvX0CSAkow2LaTrqpzwstxIueXp5DKFkdI0LV2F_7WS9qHmqdbkz-rqEdVWaMOR8FwZZa2QP_kGuzLSQuUFw807C8GFz_0xLAl1rAIHBTbSTx01gOGB1rOpTjnq03qLY_czv7zZoO9MpG297qjfSxHgcdI_wmVkQsJWl8HisBc"/>
+<span class="absolute bottom-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded bg-black/60 backdrop-blur text-white">Living Room</span>
+</div>
+<div class="relative h-28 sm:h-36 rounded-2xl overflow-hidden border border-surface-border shadow-md group cursor-pointer">
+<img alt="Cocina abierta de estilo escandinavo gourmet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl0iV91T7dml92HVG2yoVHdOwiphPHAZZh9445KlcBeLZm4jK5eFDUZxxsu8vgIFadVCoe7gdQQkHvX0CSAkow2LaTrqpzwstxIueXp5DKFkdI0LV2F_7WS9qHmqdbkz-rqEdVWaMOR8FwZZa2QP_kGuzLSQuUFw807C8GFz_0xLAl1rAIHBTbSTx01gOGB1rOpTjnq03qLY_czv7zZoO9MpG297qjfSxHgcdI_wmVkQsJWl8HisBc"/>
+<span class="absolute bottom-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded bg-black/60 backdrop-blur text-white">Cocina Chef</span>
+</div>
+<div class="relative h-28 sm:h-36 rounded-2xl overflow-hidden border border-surface-border shadow-md group cursor-pointer">
+<img alt="Suite principal con ventanales hacia el jardín" class="w-full h-full object-cover object-right group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl0iV91T7dml92HVG2yoVHdOwiphPHAZZh9445KlcBeLZm4jK5eFDUZxxsu8vgIFadVCoe7gdQQkHvX0CSAkow2LaTrqpzwstxIueXp5DKFkdI0LV2F_7WS9qHmqdbkz-rqEdVWaMOR8FwZZa2QP_kGuzLSQuUFw807C8GFz_0xLAl1rAIHBTbSTx01gOGB1rOpTjnq03qLY_czv7zZoO9MpG297qjfSxHgcdI_wmVkQsJWl8HisBc"/>
+<span class="absolute bottom-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded bg-black/60 backdrop-blur text-white">Suite Master</span>
+</div>
+</div>
+</section>
+<!-- END: PhotoGallery -->
+<!-- BEGIN: TwoColumnLayout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-4">
+<!-- LEFT COLUMN: Main Listing Details (8 cols) -->
+<div class="lg:col-span-7 xl:col-span-8 space-y-10">
+<!-- Property Quick Specs Grid (Direct match from screen_details.png) -->
+<section class="bg-surface-card rounded-3xl p-6 sm:p-8 border border-surface-border shadow-xl" data-purpose="property-features-grid">
+<h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+<i class="fa-solid fa-shapes text-brand-coral"></i> Características de la propiedad
+          </h2>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<!-- 240 m2 -->
+<div class="flex flex-col items-center justify-center p-5 rounded-2xl bg-surface-base/60 border border-surface-border text-center hover:border-slate-600 transition">
+<div class="w-12 h-12 rounded-xl bg-teal-500/10 text-brand-teal flex items-center justify-center text-xl mb-3">
+<i class="fa-solid fa-ruler-combined"></i>
+</div>
+<span class="text-2xl font-extrabold text-white">240</span>
+<span class="text-[11px] font-bold text-slate-400 tracking-wider uppercase mt-1">Metros Cuadrados</span>
+</div>
+<!-- 4 Bedrooms -->
+<div class="flex flex-col items-center justify-center p-5 rounded-2xl bg-surface-base/60 border border-surface-border text-center hover:border-slate-600 transition">
+<div class="w-12 h-12 rounded-xl bg-teal-500/10 text-brand-teal flex items-center justify-center text-xl mb-3">
+<i class="fa-solid fa-bed"></i>
+</div>
+<span class="text-2xl font-extrabold text-white">4</span>
+<span class="text-[11px] font-bold text-slate-400 tracking-wider uppercase mt-1">Habitaciones</span>
+</div>
+<!-- 3 Bathrooms -->
+<div class="flex flex-col items-center justify-center p-5 rounded-2xl bg-surface-base/60 border border-surface-border text-center hover:border-slate-600 transition">
+<div class="w-12 h-12 rounded-xl bg-teal-500/10 text-brand-teal flex items-center justify-center text-xl mb-3">
+<i class="fa-solid fa-shower"></i>
+</div>
+<span class="text-2xl font-extrabold text-white">3</span>
+<span class="text-[11px] font-bold text-slate-400 tracking-wider uppercase mt-1">Baños Completos</span>
+</div>
+<!-- 2 Garage -->
+<div class="flex flex-col items-center justify-center p-5 rounded-2xl bg-surface-base/60 border border-surface-border text-center hover:border-slate-600 transition">
+<div class="w-12 h-12 rounded-xl bg-teal-500/10 text-brand-teal flex items-center justify-center text-xl mb-3">
+<i class="fa-solid fa-car"></i>
+</div>
+<span class="text-2xl font-extrabold text-white">2</span>
+<span class="text-[11px] font-bold text-slate-400 tracking-wider uppercase mt-1">Garajes (Carga EV)</span>
+</div>
+</div>
+</section>
+<!-- Host Card & Highlights (Airbnb signature) -->
+<section class="bg-surface-card rounded-3xl p-6 sm:p-8 border border-surface-border space-y-6" data-purpose="host-and-highlights">
+<div class="flex items-center justify-between pb-6 border-b border-surface-border">
+<div class="space-y-1">
+<h2 class="text-xl font-bold text-white">Casa entera residencial · Anfitrión: Sarah Jenkins</h2>
+<p class="text-sm text-slate-400 font-medium">8 huéspedes · 4 habitaciones · 4 camas queen/king · 3 baños de lujo</p>
+</div>
+<div class="relative flex-shrink-0">
+<img alt="Retrato de Sarah Jenkins Superanfitriona" class="w-16 h-16 rounded-full object-cover border-2 border-brand-coral ring-4 ring-brand-coral/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl0iV91T7dml92HVG2yoVHdOwiphPHAZZh9445KlcBeLZm4jK5eFDUZxxsu8vgIFadVCoe7gdQQkHvX0CSAkow2LaTrqpzwstxIueXp5DKFkdI0LV2F_7WS9qHmqdbkz-rqEdVWaMOR8FwZZa2QP_kGuzLSQuUFw807C8GFz_0xLAl1rAIHBTbSTx01gOGB1rOpTjnq03qLY_czv7zZoO9MpG297qjfSxHgcdI_wmVkQsJWl8HisBc"/>
+<span class="absolute -bottom-1 -right-1 bg-brand-coral text-white p-1 rounded-full text-[10px] w-5 h-5 flex items-center justify-center font-bold">
+                ★
+              </span>
+</div>
+</div>
+<!-- Airbnb Quality Pillars -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex items-start gap-4 p-4 rounded-2xl bg-surface-base/40 border border-surface-border/60">
+<div class="text-brand-coral text-xl mt-1">
+<i class="fa-solid fa-medal"></i>
+</div>
+<div>
+<h3 class="text-sm font-bold text-white">Sarah es Superanfitriona</h3>
+<p class="text-xs text-slate-400 mt-0.5 leading-relaxed">Los Superanfitriones cuentan con 7 años de experiencia y excelentes calificaciones constantes.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-2xl bg-surface-base/40 border border-surface-border/60">
+<div class="text-brand-teal text-xl mt-1">
+<i class="fa-solid fa-key"></i>
+</div>
+<div>
+<h3 class="text-sm font-bold text-white">Llegada autónoma sin contacto</h3>
+<p class="text-xs text-slate-400 mt-0.5 leading-relaxed">Accede cómodamente a la propiedad mediante cerradura inteligente cifrada de última generación.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-2xl bg-surface-base/40 border border-surface-border/60">
+<div class="text-emerald-400 text-xl mt-1">
+<i class="fa-solid fa-calendar-check"></i>
+</div>
+<div>
+<h3 class="text-sm font-bold text-white">Cancelación flexible</h3>
+<p class="text-xs text-slate-400 mt-0.5 leading-relaxed">Reembolso del 100% cancelando hasta 48 horas antes de la fecha fijada de llegada.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-2xl bg-surface-base/40 border border-surface-border/60">
+<div class="text-indigo-400 text-xl mt-1">
+<i class="fa-solid fa-shield-halved"></i>
+</div>
+<div>
+<h3 class="text-sm font-bold text-white">Cobertura AirCover Luxe</h3>
+<p class="text-xs text-slate-400 mt-0.5 leading-relaxed">Protección de reserva y soporte de conserjería VIP 24/7 incluido de forma gratuita.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- About this home section -->
+<section class="bg-surface-card rounded-3xl p-6 sm:p-8 border border-surface-border space-y-4" data-purpose="about-this-home">
+<h2 class="text-xl font-bold text-white">Acerca de este alojamiento</h2>
+<div class="text-slate-300 text-sm sm:text-base leading-relaxed space-y-4">
+<p>
+              Experimenta el lujo moderno y el descanso total en esta residencia arquitectónicamente impresionante ubicada en el corazón de Palo Alto. Diseñada con un énfasis primordial en la integración de espacios interiores y exteriores, la villa cuenta con ventanales de piso a techo que inundan cada ambiente de abundante luz natural durante todo el día.
+            </p>
+<p>
+              La cocina gourmet de concepto abierto está totalmente equipada con electrodomésticos de gama alta Sub-Zero y Wolf, además de gabinetes personalizados y barra de cuarzo, perfecta tanto para cenas íntimas como para banquetes preparados por un chef privado.
+            </p>
+<p>
+              La suite principal es un auténtico santuario de relajación, provista de cama King de plumas orgánicas, chimenea de vapor, balcón privado con vistas al jardín y un baño tipo spa con tina de inmersión y ducha de doble lluvia.
+            </p>
+</div>
+<button class="pt-2 text-brand-coral hover:text-brand-darkCoral font-bold text-sm inline-flex items-center gap-2 group transition" type="button">
+<span>Mostrar más detalles sobre la distribución</span>
+<i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+</button>
+</section>
+<!-- Amenities Section (Direct match & extended from screen_details.png) -->
+<section class="bg-surface-card rounded-3xl p-6 sm:p-8 border border-surface-border space-y-6" data-purpose="amenities">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold text-white">Comodidades y servicios incluidos</h2>
+<span class="text-xs text-slate-400 font-semibold uppercase tracking-wider">34 Servicios Totales</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 text-sm">
+<div class="flex items-center gap-3.5 text-slate-200">
+<span class="w-7 h-7 rounded-full bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-xs">
+<i class="fa-solid fa-check"></i>
+</span>
+<span class="font-medium">Sistema Smart Home Integral (Lutron &amp; Sonos)</span>
+</div>
+<div class="flex items-center gap-3.5 text-slate-200">
+<span class="w-7 h-7 rounded-full bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-xs">
+<i class="fa-solid fa-check"></i>
+</span>
+<span class="font-medium">Piscina privada climatizada de agua salada</span>
+</div>
+<div class="flex items-center gap-3.5 text-slate-200">
+<span class="w-7 h-7 rounded-full bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-xs">
+<i class="fa-solid fa-check"></i>
+</span>
+<span class="font-medium">Climatización central y purificadores HEPA</span>
+</div>
+<div class="flex items-center gap-3.5 text-slate-200">
+<span class="w-7 h-7 rounded-full bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-xs">
+<i class="fa-solid fa-check"></i>
+</span>
+<span class="font-medium">Cargador para vehículos eléctricos (EV Tesla Wall)</span>
+</div>
+<div class="flex items-center gap-3.5 text-slate-200">
+<span class="w-7 h-7 rounded-full bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-xs">
+<i class="fa-solid fa-check"></i>
+</span>
+<span class="font-medium">Gimnasio privado con equipo Peloton &amp; Pesas</span>
+</div>
+<div class="flex items-center gap-3.5 text-slate-200">
+<span class="w-7 h-7 rounded-full bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-xs">
+<i class="fa-solid fa-check"></i>
+</span>
+<span class="font-medium">Cava de vinos climatizada con selección Napa</span>
+</div>
+<div class="flex items-center gap-3.5 text-slate-200">
+<span class="w-7 h-7 rounded-full bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-xs">
+<i class="fa-solid fa-check"></i>
+</span>
+<span class="font-medium">Wifi de fibra óptica ultrarrápido (650 Mbps)</span>
+</div>
+<div class="flex items-center gap-3.5 text-slate-200">
+<span class="w-7 h-7 rounded-full bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-xs">
+<i class="fa-solid fa-check"></i>
+</span>
+<span class="font-medium">Jacuzzi exterior para 6 personas con cromoterapia</span>
+</div>
+</div>
+<div class="pt-4 border-t border-surface-border">
+<button class="w-full sm:w-auto px-6 py-3 rounded-xl border border-surface-border hover:border-slate-400 bg-surface-base/80 hover:bg-surface-base text-white text-sm font-semibold transition" type="button">
+              Mostrar los 34 servicios y comodidades
+            </button>
+</div>
+</section>
+<!-- Location Map Card (Matches screen_details.png location preview) -->
+<section class="bg-surface-card rounded-3xl p-6 sm:p-8 border border-surface-border space-y-6" data-purpose="location-map">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div>
+<h2 class="text-xl font-bold text-white">Ubicación y Entorno</h2>
+<p class="text-sm text-slate-400 mt-1">Palo Alto, California, Estados Unidos · Vecindario exclusivo y sereno</p>
+</div>
+<span class="text-xs font-semibold px-3 py-1.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 w-fit">
+              Stanford University a 8 min
+            </span>
+</div>
+<!-- Stylized Map Preview Graphic (From Reference) -->
+<div class="relative h-64 sm:h-80 rounded-2xl overflow-hidden border border-surface-border bg-slate-900 group">
+<img alt="Plano cartográfico tridimensional de la ubicación en Palo Alto" class="w-full h-full object-cover object-bottom filter brightness-75 contrast-125 saturate-50 group-hover:scale-105 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl0iV91T7dml92HVG2yoVHdOwiphPHAZZh9445KlcBeLZm4jK5eFDUZxxsu8vgIFadVCoe7gdQQkHvX0CSAkow2LaTrqpzwstxIueXp5DKFkdI0LV2F_7WS9qHmqdbkz-rqEdVWaMOR8FwZZa2QP_kGuzLSQuUFw807C8GFz_0xLAl1rAIHBTbSTx01gOGB1rOpTjnq03qLY_czv7zZoO9MpG297qjfSxHgcdI_wmVkQsJWl8HisBc"/>
+<!-- Dark mode overlay gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-base via-surface-base/30 to-transparent"></div>
+<!-- Custom Location Pin Pinpoint -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="relative flex flex-col items-center animate-bounce">
+<div class="w-14 h-14 rounded-full bg-brand-coral text-white shadow-2xl flex items-center justify-center text-2xl border-4 border-white/20">
+<i class="fa-solid fa-house"></i>
+</div>
+<div class="w-4 h-4 bg-brand-coral rotate-45 -mt-2"></div>
+<div class="w-8 h-2 bg-black/40 rounded-full blur-sm mt-1"></div>
+</div>
+</div>
+<!-- View on Map Button -->
+<div class="absolute bottom-4 right-4">
+<button class="px-5 py-2.5 rounded-xl bg-surface-card/90 hover:bg-surface-card backdrop-blur text-white text-xs font-bold border border-surface-border shadow-lg flex items-center gap-2 transition" type="button">
+<i class="fa-solid fa-map text-brand-coral"></i> Ver en Google Maps
+              </button>
+</div>
+</div>
+</section>
+<!-- Guest Reviews Breakdown -->
+<section class="bg-surface-card rounded-3xl p-6 sm:p-8 border border-surface-border space-y-6" data-purpose="guest-reviews" id="reviews">
+<div class="flex items-center gap-3">
+<i class="fa-solid fa-star text-brand-gold text-2xl"></i>
+<h2 class="text-2xl font-black text-white">4.98 · 124 evaluaciones</h2>
+</div>
+<!-- Ratings Matrix -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-y-4 gap-x-8 text-xs font-semibold text-slate-300 pb-6 border-b border-surface-border">
+<div class="space-y-1">
+<div class="flex justify-between"><span>Limpieza</span><span class="text-white">4.9</span></div>
+<div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-400 h-full rounded-full" style="width: 98%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between"><span>Precisión</span><span class="text-white">5.0</span></div>
+<div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-400 h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between"><span>Comunicación</span><span class="text-white">4.9</span></div>
+<div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-400 h-full rounded-full" style="width: 98%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between"><span>Ubicación</span><span class="text-white">5.0</span></div>
+<div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-400 h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between"><span>Llegada</span><span class="text-white">5.0</span></div>
+<div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-400 h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between"><span>Calidad-precio</span><span class="text-white">4.8</span></div>
+<div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-400 h-full rounded-full" style="width: 96%"></div>
+</div>
+</div>
+</div>
+<!-- Featured Testimonial -->
+<div class="flex items-start gap-4 pt-2">
+<div class="w-12 h-12 rounded-full bg-indigo-600/30 text-indigo-400 font-bold flex items-center justify-center flex-shrink-0 text-sm border border-indigo-500/40">
+              MR
+            </div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h4 class="text-sm font-bold text-white">Mateo Ramírez</h4>
+<span class="text-xs text-slate-500">hace 3 semanas · Se alojó 5 noches</span>
+</div>
+<p class="text-sm text-slate-300 leading-relaxed">
+                "La casa es aún más bella que en las fotos. La luz natural, el aislamiento acústico y la tecnología domótica son impresionantes. Sarah estuvo disponible en todo momento con una amabilidad inigualable. Inmejorable para una escapada en Silicon Valley."
+              </p>
+</div>
+</div>
+</section>
+</div>
+<!-- RIGHT COLUMN: Sticky Booking & Reservation Card (5 cols / 4 cols) -->
+<div class="lg:col-span-5 xl:col-span-4">
+<aside class="sticky top-28 space-y-6">
+<!-- Primary Reservation Card -->
+<div class="bg-surface-card rounded-3xl p-6 sm:p-7 border border-surface-border shadow-2xl space-y-6 relative overflow-hidden" data-purpose="booking-card">
+<!-- Subtle glow background accent -->
+<div class="absolute -top-24 -right-24 w-48 h-48 bg-brand-coral/10 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Price & Rating Header (Direct match to reference image pricing header) -->
+<div class="flex items-baseline justify-between border-b border-surface-border pb-5">
+<div class="flex items-baseline gap-1.5">
+<span class="text-3xl sm:text-4xl font-black text-white tracking-tight">$1,250</span>
+<span class="text-sm font-semibold text-slate-400">USD / noche</span>
+</div>
+<div class="flex items-center gap-1 text-sm font-bold text-white">
+<i class="fa-solid fa-star text-brand-gold text-xs"></i> 4.98
+                <span class="text-slate-500 font-normal">(124)</span>
+</div>
+</div>
+<!-- Booking Inputs Grid -->
+<div class="rounded-2xl border border-surface-border bg-surface-base/80 overflow-hidden divide-y divide-surface-border">
+<!-- Dates Picker Simulation -->
+<div class="grid grid-cols-2 divide-x divide-surface-border">
+<div class="p-3.5 hover:bg-slate-800/40 cursor-pointer transition">
+<label class="block text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Llegada</label>
+<div class="text-xs sm:text-sm font-bold text-white mt-0.5">14 nov. 2025</div>
+</div>
+<div class="p-3.5 hover:bg-slate-800/40 cursor-pointer transition">
+<label class="block text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Salida</label>
+<div class="text-xs sm:text-sm font-bold text-white mt-0.5">20 nov. 2025</div>
+</div>
+</div>
+<!-- Guests Dropdown Simulation -->
+<div class="p-3.5 hover:bg-slate-800/40 cursor-pointer transition flex items-center justify-between">
+<div>
+<label class="block text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Huéspedes</label>
+<div class="text-xs sm:text-sm font-bold text-white mt-0.5">4 adultos, 1 niño</div>
+</div>
+<i class="fa-solid fa-chevron-down text-xs text-slate-400"></i>
+</div>
+</div>
+<!-- Main CTA Button -->
+<button class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-brand-coral via-rose-500 to-brand-coral hover:from-brand-darkCoral hover:to-rose-600 text-white font-extrabold text-base tracking-wide shadow-lg shadow-brand-coral/25 active:scale-[0.99] transition-all flex items-center justify-center gap-3" type="button">
+<i class="fa-regular fa-calendar-check text-lg"></i>
+<span>Reservar Estancia</span>
+</button>
+<p class="text-center text-xs text-slate-400 font-medium">No se te cobrará nada aún</p>
+<!-- Price Breakdown Calculation -->
+<div class="space-y-3 pt-2 text-sm text-slate-300">
+<div class="flex justify-between items-center">
+<span class="underline decoration-slate-600 hover:text-white cursor-pointer">$1,250 USD x 6 noches</span>
+<span class="font-semibold text-white">$7,500 USD</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="underline decoration-slate-600 hover:text-white cursor-pointer">Tarifa de limpieza profesional</span>
+<span class="font-semibold text-white">$180 USD</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="underline decoration-slate-600 hover:text-white cursor-pointer">Tarifa por servicio Airbnb Luxe</span>
+<span class="font-semibold text-white">$420 USD</span>
+</div>
+<div class="border-t border-surface-border pt-4 flex justify-between items-center text-base">
+<span class="font-bold text-white">Total antes de impuestos</span>
+<span class="font-black text-xl text-brand-coral">$8,100 USD</span>
+</div>
+</div>
+<!-- Host Direct Contact Section (From screen_details.png) -->
+<div class="border-t border-surface-border pt-5 space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img alt="Sarah Jenkins" class="w-12 h-12 rounded-full object-cover border border-brand-teal ring-2 ring-brand-teal/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl0iV91T7dml92HVG2yoVHdOwiphPHAZZh9445KlcBeLZm4jK5eFDUZxxsu8vgIFadVCoe7gdQQkHvX0CSAkow2LaTrqpzwstxIueXp5DKFkdI0LV2F_7WS9qHmqdbkz-rqEdVWaMOR8FwZZa2QP_kGuzLSQuUFw807C8GFz_0xLAl1rAIHBTbSTx01gOGB1rOpTjnq03qLY_czv7zZoO9MpG297qjfSxHgcdI_wmVkQsJWl8HisBc"/>
+<div>
+<h4 class="text-sm font-bold text-white leading-tight">Sarah Jenkins</h4>
+<p class="text-[11px] text-teal-400 font-semibold flex items-center gap-1 mt-0.5">
+<i class="fa-solid fa-star text-[9px]"></i> Top Rated Superhost
+                    </p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Enviar mensaje a la anfitriona" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition border border-surface-border" type="button">
+<i class="fa-regular fa-comment-dots text-xs"></i>
+</button>
+<button aria-label="Llamar a la anfitriona" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition border border-surface-border" type="button">
+<i class="fa-solid fa-phone text-xs"></i>
+</button>
+</div>
+</div>
+<!-- Secondary Contact Button -->
+<button class="w-full py-2.5 px-4 rounded-xl border border-surface-border hover:border-slate-500 bg-surface-base/60 hover:bg-surface-base text-slate-200 text-xs font-bold transition flex items-center justify-center gap-2" type="button">
+<i class="fa-regular fa-envelope text-xs"></i> Contactar al anfitrión
+              </button>
+</div>
+</div>
+<!-- Mortgage / Long-Stay Estimated Payment Box (From screen_details.png) -->
+<div class="bg-surface-card rounded-2xl p-5 border border-surface-border shadow-lg flex items-center justify-between gap-4" data-purpose="monthly-finance-badge">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-teal-500/15 text-brand-teal flex items-center justify-center text-lg flex-shrink-0">
+<i class="fa-solid fa-calculator"></i>
+</div>
+<div>
+<h5 class="text-xs font-bold text-white">Tarifa mensual especial</h5>
+<p class="text-[11px] text-slate-400 font-medium">Desde <span class="text-white font-bold">$18,400/mes</span> (-25% dto.)</p>
+</div>
+</div>
+<button class="text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white transition flex-shrink-0" type="button">
+              Ver estancias
+            </button>
+</div>
+<!-- Security and reporting badge -->
+<div class="text-center">
+<a class="inline-flex items-center gap-2 text-xs text-slate-500 hover:text-slate-400 transition font-medium" href="#">
+<i class="fa-regular fa-flag text-[10px]"></i> Denunciar este anuncio ante Airbnb
+            </a>
+</div>
+</aside>
+</div>
+</div>
+<!-- END: TwoColumnLayout -->
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: MainFooter -->
+<footer class="mt-20 border-t border-surface-border bg-surface-card/60 backdrop-blur" data-purpose="site-footer">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+<!-- Footer Link Columns -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-xs font-medium text-slate-400">
+<div class="space-y-3">
+<h3 class="text-sm font-bold text-white tracking-wide">Asistencia</h3>
+<ul class="space-y-2.5">
+<li><a class="hover:text-white transition" href="#">Centro de ayuda</a></li>
+<li><a class="hover:text-white transition" href="#">AirCover de Luxe</a></li>
+<li><a class="hover:text-white transition" href="#">Antidiscriminación</a></li>
+<li><a class="hover:text-white transition" href="#">Apoyo para discapacitados</a></li>
+<li><a class="hover:text-white transition" href="#">Opciones de cancelación</a></li>
+</ul>
+</div>
+<div class="space-y-3">
+<h3 class="text-sm font-bold text-white tracking-wide">Comunidad</h3>
+<ul class="space-y-2.5">
+<li><a class="hover:text-white transition" href="#">Airbnb.org: alojamiento de ayuda</a></li>
+<li><a class="hover:text-white transition" href="#">Combatiendo la discriminación</a></li>
+<li><a class="hover:text-white transition" href="#">Foro de la comunidad</a></li>
+<li><a class="hover:text-white transition" href="#">Invita a tus amigos</a></li>
+</ul>
+</div>
+<div class="space-y-3">
+<h3 class="text-sm font-bold text-white tracking-wide">Modo anfitrión</h3>
+<ul class="space-y-2.5">
+<li><a class="hover:text-white transition" href="#">Pon tu casa en Airbnb</a></li>
+<li><a class="hover:text-white transition" href="#">AirCover para anfitriones</a></li>
+<li><a class="hover:text-white transition" href="#">Recursos para anfitriones</a></li>
+<li><a class="hover:text-white transition" href="#">Foro comunitario</a></li>
+<li><a class="hover:text-white transition" href="#">Ser anfitrión responsable</a></li>
+</ul>
+</div>
+<div class="space-y-3">
+<h3 class="text-sm font-bold text-white tracking-wide">Airbnb Luxe</h3>
+<ul class="space-y-2.5">
+<li><a class="hover:text-white transition" href="#">Sala de prensa</a></li>
+<li><a class="hover:text-white transition" href="#">Nuevas funciones</a></li>
+<li><a class="hover:text-white transition" href="#">Carreras laborales</a></li>
+<li><a class="hover:text-white transition" href="#">Inversionistas</a></li>
+<li><a class="hover:text-white transition" href="#">Espacios de diseño exclusivo</a></li>
+</ul>
+</div>
+</div>
+<!-- Footer Bottom Bar -->
+<div class="border-t border-surface-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium">
+<div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-center md:text-left">
+<span>© 2025 Airbnb, Inc. Todos los derechos reservados.</span>
+<span>·</span>
+<a class="hover:text-slate-300 transition" href="#">Privacidad</a>
+<span>·</span>
+<a class="hover:text-slate-300 transition" href="#">Términos</a>
+<span>·</span>
+<a class="hover:text-slate-300 transition" href="#">Mapa del sitio</a>
+<span>·</span>
+<a class="hover:text-slate-300 transition" href="#">Datos de la empresa</a>
+</div>
+<!-- Social Icons -->
+<div class="flex items-center gap-4 text-slate-400">
+<button aria-label="Español (ES) y USD" class="flex items-center gap-2 hover:text-white transition mr-2" type="button">
+<i class="fa-solid fa-globe"></i>
+<span class="font-bold text-white">Español (ES)</span>
+<span class="font-bold text-white">$ USD</span>
+</button>
+<a aria-label="Facebook" class="w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 hover:text-white flex items-center justify-center transition" href="#">
+<i class="fa-brands fa-facebook-f text-xs"></i>
+</a>
+<a aria-label="Twitter / X" class="w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 hover:text-white flex items-center justify-center transition" href="#">
+<i class="fa-brands fa-x-twitter text-xs"></i>
+</a>
+<a aria-label="Instagram" class="w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 hover:text-white flex items-center justify-center transition" href="#">
+<i class="fa-brands fa-instagram text-xs"></i>
+</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+</body></html>
