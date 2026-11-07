@@ -34,9 +34,10 @@ Se completó la transición del catálogo estático de propiedades a una arquite
 - **Diagnóstico:** El servidor MCP Supabase responde con error `ProtocolError: MCP error -32600: You do not have permission to perform this action` para el proyecto `ecfyeaatwwiflpxncqka`, dado que el token OAuth activo en la máquina solo autoriza la organización `vercel_icfg_KoFM2AcsMBdyrxYqWio6WfpZ`.
 - **Solución implementada:** Se generó el script SQL listo para producción (`03-seed-properties.sql`) para ejecución directa en el SQL Editor del dashboard de Supabase, y se desacopló el frontend mediante variables de entorno estándar en `.env.local`.
 
-### Prevención de Rompimientos en Build / Prerendering
-- **Problema:** En Next.js 16 (App Router), si un Server Component falla al consultar una API externa sin credenciales en tiempo de compilación (`next build`), la compilación completa aborta.
-- **Solución:** `getProperties()` implementa un patrón seguro de detección y fallback automático. Si `NEXT_PUBLIC_SUPABASE_ANON_KEY` aún no está presente en `.env.local`, el build se completa limpiamente utilizando los mocks y emitiendo un log informativo, garantizando cero tiempo de caída.
+### Prevención de Rompimientos en Build / Prerendering (Next.js 16 + Vercel)
+- **Problema en Vercel:** Al configurar las variables de entorno en Vercel, Next.js 16 con `cacheComponents: true` y `partialPrefetching: true` detectó una llamada no cacheada a Supabase (`fetch`) durante la fase de prerenderizado sin estar envuelta en un límite de streaming:
+  `Error: Route "/": Next.js encountered uncached or runtime data during prerendering.`
+- **Solución implementada:** Se encapsuló la llamada asíncrona a `getProperties()` dentro de un componente servidor `<HomeData />` envuelto en `<Suspense fallback={<HomePageContent />}>` en [`app/page.tsx`](file:///E:/Learning/NextGenAI/codecats2026/app/page.tsx). Esto permite que Next.js compile la ruta como `◐ (Partial Prerender)` en Vercel sin bloquear el build, sirviendo el cascarón estático de inmediato y transmitiendo los datos de Supabase fluidamente.
 
 ---
 
